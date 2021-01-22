@@ -16,8 +16,9 @@ public class MyMain {
     // by the direction input
     public static boolean[][] placeBoat(boolean[][] board, String direction, int boatLength, int row, int col) { 
         // YOUR CODE HERE
-        if (direction.equals("down")) for (int i = row; i<row+boatLength; i++) board[row][col] = true;
-        else if (direction.equals("right")) for (int i = col; i<col+boatLength; i++) board[row][col] = true;
+
+        if (direction.equals("down")) for (int i = row; i<row+boatLength; i++) board[i][col] = true;
+        else if (direction.equals("right")) for (int i = col; i<col+boatLength; i++) board[row][i] = true;
         return board;
     }
 
@@ -27,7 +28,16 @@ public class MyMain {
     // You may assume that all Strings are lowercase 
     public static boolean inOrder(String[][] words) { 
         // YOUR CODE HERE
-        return false;
+        for (String[] row: words) {
+            int previousWordLength = 0;
+            char previousFirstLetter = (char)(row[0].charAt(0)-1);
+            for (String word: row) {
+                if (word.length() <= previousWordLength || word.charAt(0) <= previousFirstLetter) return false;
+                previousWordLength = word.length();
+                previousFirstLetter = word.charAt(0);
+            }
+        }
+        return true;
     }
 
     public static void main(String[] args) {
