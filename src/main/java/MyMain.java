@@ -4,7 +4,9 @@ public class MyMain {
     // method also prints out an appropriate message
     public static boolean hit(boolean[][] board, int row, int col) { 
         // YOUR CODE HERE
-        return false;
+        if (board[row][col]) System.out.println("There was a hit!");
+        else System.out.println("You missed a boat!");
+        return board[row][col];
     }
 
 
@@ -14,6 +16,8 @@ public class MyMain {
     // by the direction input
     public static boolean[][] placeBoat(boolean[][] board, String direction, int boatLength, int row, int col) { 
         // YOUR CODE HERE
+        if (direction.equals("down")) for (int i = row; i<row+boatLength; i++) board[row][col] = true;
+        else if (direction.equals("right")) for (int i = col; i<col+boatLength; i++) board[row][col] = true;
         return board;
     }
 
